@@ -63,4 +63,6 @@ The script applies the upstream diff since `.upstream-commit` (skipping the lock
 3. **New endpoints:** for each new `request({ method, path })` in `src/hooks/`, add a route in `src/data/mock_api.ts`; an unmocked call fails with a 404 toast naming the method and path.
 4. `npm install && npm run build`, then commit (including `.upstream-commit`) and push.
 
+Your local npm cache may hold tarballs fetched through CodeArtifact, which hides lockfile problems that Vercel will hit. Before pushing a lockfile change, run `node scripts/fix_lock_integrity.mjs package-lock.json`: it must report `integrity changed 0`. If not, run it again with `--write`.
+
 See [CLAUDE.md](CLAUDE.md) for the project structure and UI conventions.
