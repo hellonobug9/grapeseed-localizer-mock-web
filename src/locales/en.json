@@ -1,0 +1,780 @@
+{
+  "common": {
+    "projectCount_one": "{{count}} project",
+    "projectCount_other": "{{count}} projects",
+    "languageCount_one": "{{count}} language",
+    "languageCount_other": "{{count}} languages",
+    "keyCount_one": "{{count}} key",
+    "keyCount_other": "{{count}} keys",
+    "selectedOf": "{{selected}} of {{total}} selected",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "confirmDelete": {
+      "warning": "This can't be undone."
+    },
+    "save": "Save",
+    "download": "Download",
+    "source": "Source",
+    "errors": {
+      "required": "This field is required",
+      "email": "Enter a valid email address",
+      "fixFields": "Please fix the highlighted fields"
+    },
+    "downloading": "Downloading {{file}}…",
+    "loading": "Loading…",
+    "pager": {
+      "showing": "Showing {{from}}–{{to}} of {{total}} {{noun}}",
+      "previous": "Previous page",
+      "next": "Next page"
+    }
+  },
+  "lock": {
+    "status": {
+      "open": "Open",
+      "locked": "Locked",
+      "scheduled": "Scheduled"
+    },
+    "summary": {
+      "scheduled": "Scheduled from {{from}} to {{until}} by {{user}}",
+      "lockedUntil": "Locked by {{user}} · until {{until}}",
+      "lockedIndefinitely": "Locked by {{user}} · {{since}} · until unlocked"
+    },
+    "toast": {
+      "locked": "{{project}} locked – comtors can no longer edit translations",
+      "scheduled": "{{project}} will be locked from {{from}} to {{until}}",
+      "lockedUntil": "{{project}} locked until {{until}}",
+      "scheduleCancelled": "Scheduled lock for {{project}} cancelled",
+      "unlocked": "{{project}} unlocked – translation is open again"
+    },
+    "panel": {
+      "locked": {
+        "title": "Locked"
+      },
+      "scheduled": {
+        "title": "Lock scheduled"
+      },
+      "unlock": "Unlock",
+      "lockNow": "Lock now",
+      "schedule": "Schedule",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "endDateInvalid": "Pick an end date on or after the start date.",
+      "scheduleHint": "Locked from the start of the first day through the end of the last day, then opens again automatically.",
+      "scheduleLock": "Schedule lock"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "{{projects}} · {{keys}} in total",
+    "new": "New project",
+    "filterPlaceholder": "Filter projects…",
+    "filter": {
+      "all": "All",
+      "open": "Open",
+      "locked": "Locked"
+    },
+    "noMatch": "No projects match",
+    "empty": "No projects yet",
+    "columns": {
+      "project": "Project",
+      "languages": "Languages",
+      "coverage": "Coverage",
+      "lastTranslated": "Last translated",
+      "status": "Status"
+    },
+    "newThisWeek": "+{{count}} this week",
+    "stale": "Stale",
+    "byUser": "by {{name}}",
+    "canTranslate": "Comtors can translate",
+    "lockNow": "Lock now",
+    "unlock": "Unlock",
+    "cancelScheduledLock": "Cancel scheduled lock",
+    "moreActions": "More actions",
+    "openTranslations": "Open translations",
+    "addKey": "Add key",
+    "languageSettings": "Language settings",
+    "drawer": {
+      "translationLock": "Translation lock",
+      "totalKeys": "Total keys",
+      "untranslatedKeys": "Untranslated keys",
+      "coverage": "Overall coverage",
+      "lastTranslatedBy": "Last translated · {{name}}",
+      "byLanguage": "By language",
+      "noLanguages": "No target languages configured yet.",
+      "progress": "{{translated}} / {{total}} translated",
+      "missing": "{{count}} missing",
+      "languagesToTranslate": "Languages to translate",
+      "removedWarning": "Removed languages are hidden from comtors and downloads. Existing translations are kept and come back if you re-enable the language.",
+      "saveLanguages": "Save languages",
+      "saved": "Language settings for {{name}} saved",
+      "activity": "Activity"
+    },
+    "newDialog": {
+      "title": "New project",
+      "name": "Name",
+      "namePlaceholder": "e.g. School site",
+      "languages": "Languages to translate",
+      "languagesHint": "English is the source language and is always included. You can change this later.",
+      "languagesRequired": "Select at least one language",
+      "create": "Create project",
+      "created": "Project created"
+    }
+  },
+  "projectDetails": {
+    "notFound": "Project not found",
+    "backToProjects": "Back to projects",
+    "uploadJson": "Upload JSON",
+    "addKey": "Add key",
+    "lockedCallout": "<b>This project is locked.</b> Comtors can no longer edit or upload translations. {{summary}}. Unlock it from the <link>Projects</link> list.",
+    "scheduledCallout": "<b>A lock is scheduled.</b> Comtors can translate until it starts. {{summary}}. Change it from the <link>Projects</link> list.",
+    "kpi": {
+      "totalKeys": "Total keys",
+      "stringsToTranslate_one": "{{count}} string to translate",
+      "stringsToTranslate_other": "{{count}} strings to translate",
+      "newKeys": "New keys · 7 days",
+      "viewNewKeys": "View new keys",
+      "untranslated": "Untranslated",
+      "lastTranslated": "Last translated",
+      "lastTranslatedFooter": "by {{name}} · {{date}}"
+    },
+    "env": {
+      "published": "Published {{time}} by {{user}}",
+      "publishTo": "Publish to {{env}}"
+    },
+    "downloadMenu": {
+      "allLanguages": "All languages",
+      "moreOptions": "More options…"
+    },
+    "tabs": {
+      "translations": "Translations",
+      "languages": "Languages"
+    },
+    "downloadDialog": {
+      "title": "Export {{name}}",
+      "languages": "Languages",
+      "selectedOf": "{{selected}} of {{total}}",
+      "all": "All",
+      "none": "None",
+      "fileNameFor": "File name for {{language}}",
+      "archiveName": "Archive name",
+      "selectLanguage": "Select at least one language",
+      "includeUntranslated": "Include untranslated keys",
+      "export": "Export",
+      "preparing": "Preparing {{file}}…"
+    },
+    "languagesTab": {
+      "columns": {
+        "language": "Language",
+        "translated": "Translated",
+        "missing": "Missing",
+        "coverage": "Coverage",
+        "lastUpdate": "Last update"
+      },
+      "upload": "Upload {{file}}"
+    },
+    "modules": {
+      "title": "Modules",
+      "untranslated": "{{count}} untranslated",
+      "allTranslated": "All translated",
+      "newCount": "{{count}} new"
+    },
+    "publishDialog": {
+      "title": "Publish to <badge></badge>",
+      "liveWarning": "Translations published to LIVE are delivered to all end users immediately. Make sure QA has verified the TEST build first.",
+      "changedKeys": "Changed keys",
+      "newKeys": "New keys",
+      "untranslated": "Untranslated",
+      "releaseNote": "Release note",
+      "releaseNotePlaceholder": "What changed in this release?",
+      "useEnglish_one": "Use English for the {{count}} untranslated string",
+      "useEnglish_other": "Use English for the {{count}} untranslated strings",
+      "qaVerified": "QA has verified the TEST build",
+      "published": "{{project}} published to {{env}}"
+    },
+    "translationCell": {
+      "notTranslated": "Not translated",
+      "placeholder": "{{language}} translation…",
+      "label": "{{language}} translation"
+    },
+    "translations": {
+      "status": {
+        "all": "All statuses",
+        "missing": "Untranslated",
+        "translated": "Translated",
+        "new": "New this week"
+      },
+      "searchIn": "Search in {{module}}…",
+      "searchAll": "Search all modules by key or text…",
+      "languageLabel": "Translation language",
+      "statusLabel": "Status",
+      "clearFilters": "Clear filters",
+      "clearModule": "Clear module",
+      "untranslatedIn": "{{count}} untranslated in {{language}}",
+      "allModules": "All modules",
+      "pickModule": "Pick a module on the left to narrow down",
+      "selectModule": "Select a module",
+      "selectModuleHint_one": "Pick the module to see its keys and translations, or search to look across all of them.",
+      "selectModuleHint_other": "Pick one of the {{count}} modules to see its keys and translations, or search to look across all of them.",
+      "noMatch": "No keys match these filters",
+      "noMatchHint": "Try another language or clear the search.",
+      "columns": {
+        "key": "Key",
+        "source": "(source)",
+        "updated": "Updated"
+      },
+      "newBadge": "New",
+      "expandPreview": "Expand {{language}} content preview",
+      "collapsePreview": "Collapse {{language}} content preview",
+      "formattedContent": "Formatted content",
+      "long": "HTML",
+      "longTitle": "HTML content – edited in the side panel",
+      "edit": "Edit translations",
+      "more": "More",
+      "copyKey": "Copy key",
+      "copied": "Copied “{{key}}”",
+      "copyTranslation": "Copy translation",
+      "copiedTranslation": "Copied {{language}} translation for “{{key}}”",
+      "pendingChanges_one": "{{count}} translation change pending",
+      "pendingChanges_other": "{{count}} translation changes pending",
+      "discardAll": "Discard all",
+      "saveAll": "Save all",
+      "savedAll_one": "Saved {{count}} translation change",
+      "savedAll_other": "Saved {{count}} translation changes",
+      "discardDialog": {
+        "title_one": "Discard {{count}} unsaved change?",
+        "title_other": "Discard {{count}} unsaved changes?",
+        "warning": "Your edits will be lost. Use Save all first to keep them.",
+        "confirm": "Discard changes"
+      },
+      "translate": "Translate",
+      "deleteKey": "Delete key",
+      "deleted": "Key “{{key}}” deleted",
+      "deleteDialog": {
+        "title": "Delete key “{{key}}”?"
+      },
+      "keysNoun": "keys"
+    }
+  },
+  "keyForm": {
+    "addTitle": "Add new key",
+    "editTitle": "Edit translations",
+    "editBreadcrumb": "Edit key",
+    "editDescription": "Update the source text and translations for this key.",
+    "sourceRequired": "The English source text is required",
+    "keyCreated": "Key created",
+    "translationsSaved": "Translations saved",
+    "details": "Key details",
+    "project": "Project",
+    "projectPlaceholder": "Select a project…",
+    "key": "Key",
+    "contentType": "Content type",
+    "format": {
+      "label": "Short label",
+      "longText": "Long text / HTML"
+    },
+    "context": "Context for translators",
+    "contextPlaceholder": "Where is this text shown? Any length limit?",
+    "maxLength": "Max length",
+    "maxLengthPlaceholder": "e.g. 24",
+    "created": "Created",
+    "lastUpdated": "Last updated",
+    "translations": "Translations",
+    "filled": "{{filled}} of {{total}} languages filled",
+    "suggest": "Suggest translations",
+    "suggested": "Machine translation suggestions filled in",
+    "languageTabs": "Language",
+    "saveAndAddAnother": "Save & add another",
+    "saveChanges": "Save changes",
+    "saveKey": "Save key",
+    "errors": {
+      "projectRequired": "Select a project",
+      "keyFormat": "Use lowercase letters, numbers and underscores, separated by dots"
+    },
+    "sourcePlaceholder": "Source text in English (required)",
+    "translationPlaceholder": "{{language}} translation",
+    "characterCount_one": "{{formatted}} character",
+    "characterCount_other": "{{formatted}} characters",
+    "writeSourceFirst": "Write the English source first",
+    "replaceWithSource": "Replace the current translation with the English source?",
+    "copySource": "Copy source",
+    "copySourceHint": "Start from the English text and translate it in place – keeps the HTML tags",
+    "view": {
+      "write": "Edit",
+      "preview": "Preview"
+    },
+    "englishSource": "🇬🇧 English source",
+    "noSource": "No English source text yet.",
+    "previewTitle": "{{language}} preview",
+    "htmlTagError": "Keep the HTML tags and link destinations the same as the English source.",
+    "htmlEditor": {
+      "editor": "Editor",
+      "contentPreview": "Content preview",
+      "live": "Live",
+      "previewHint": "Template styling may differ.",
+      "emptyPreview": "Start typing to preview your translation.",
+      "placeholders": "Keep placeholders unchanged:",
+      "unsaved": "Unsaved changes",
+      "saving": "Saving…",
+      "saveFailed": "Couldn’t save your translation. Your draft is still here. Please try again.",
+      "discardTitle": "Discard changes?",
+      "discardDescription": "Your unsaved translation will be lost.",
+      "keepEditing": "Keep editing",
+      "discard": "Discard changes"
+    }
+  },
+  "time": {
+    "justNow": "just now",
+    "today": "Today",
+    "yesterday": "Yesterday"
+  },
+  "nav": {
+    "workspace": "Workspace",
+    "administration": "Administration",
+    "projects": "Projects",
+    "dashboard": "Dashboard",
+    "languages": "Languages",
+    "search": "Search",
+    "activity": "Activity",
+    "users": "Users & roles",
+    "templates": "Templates",
+    "template": {
+      "notification": "Notification"
+    }
+  },
+  "templates": {
+    "title": "Notification templates",
+    "description": "Emails, SMS and policies sent by the GrapeSEED Notification service. You translate into drafts; publishing happens in the Notification admin.",
+    "releaseLabel": "Release",
+    "languageLabel": "Target language",
+    "stateLabel": "Translation status",
+    "serviceLabel": "Service",
+    "release": {
+      "none": "No release",
+      "option": "Release {{version}}"
+    },
+    "allTypes": "All",
+    "allStates": "All statuses",
+    "allServices": "All services",
+    "searchPlaceholder": "Search name or code…",
+    "empty": "No templates yet",
+    "noMatch": "No templates match your filters",
+    "noMatchHint": "Try another type, status, service or search term.",
+    "noSourceHint": "No English content yet. Write it in the Notification admin first.",
+    "liveFrom": "live from {{release}}",
+    "type": {
+      "Email": "Email",
+      "Sms": "SMS",
+      "PrivacyPolicy": "Privacy policy",
+      "TermsOfService": "Terms of service",
+      "Others": "Others"
+    },
+    "state": {
+      "missing": "Missing",
+      "outdated": "Outdated",
+      "draft": "Draft",
+      "published": "Published",
+      "archived": "Archived",
+      "noSource": "No English"
+    },
+    "status": {
+      "Draft": "Draft",
+      "Published": "Published",
+      "Archived": "Archived"
+    },
+    "kpi": {
+      "translated": "Translated",
+      "published": "Published",
+      "needsWork": "Needs work",
+      "ofTemplates": "{{count}} of {{total}} templates",
+      "needsWorkFooter": "{{missing}} missing · {{outdated}} outdated"
+    },
+    "columns": {
+      "template": "Template",
+      "type": "Type",
+      "service": "Service",
+      "english": "English",
+      "translation": "Translation",
+      "updatedBy": "Updated by"
+    },
+    "fields": {
+      "title": "Title",
+      "subject": "Subject",
+      "body": "Body",
+      "message": "Message"
+    },
+    "field": {
+      "missing": "Missing",
+      "englishChanged": "English changed",
+      "useSource": "Copy the English into the translation",
+      "placeholder": "Add translation…",
+      "translationLabel": "{{field}} translation"
+    },
+    "segments": {
+      "progress": "{{translated}} of {{total}} segments translated",
+      "filter": {
+        "all": "All",
+        "todo": "To do"
+      },
+      "next": "Next to do",
+      "hint": "Numbered tags such as <1>…</1> carry the English formatting and links. Keep each pair around the matching words, or click a tag under the box to insert it.",
+      "noTodo": "Nothing left to do in this body.",
+      "label": "Segment {{number}} translation",
+      "insert": "Insert:",
+      "mode": {
+        "segments": "Segments",
+        "html": "HTML"
+      },
+      "cantSplitSource": "The English body has text outside paragraphs, so it can't be split into segments. Translate the HTML directly and keep every tag.",
+      "cantSplitTarget": "The markup of this translation doesn't line up with the English, so it can't be split into segments. Edit the HTML, or start over in segments.",
+      "startOver": "Start over in segments",
+      "switchFailed": "This HTML doesn't line up with the English, so it can't be split into segments.",
+      "englishHtml": "English HTML"
+    },
+    "tags": {
+      "link": "Link to {{href}}",
+      "bold": "Bold",
+      "italic": "Italic",
+      "underline": "Underline",
+      "strike": "Strikethrough",
+      "image": "Image",
+      "style": "Formatting: {{style}}",
+      "other": "<{{tag}}> tag"
+    },
+    "sync": {
+      "synced": "Synced {{date}}",
+      "outdated": "Synced {{date}}, before the last change",
+      "notSynced": "Not synced to this tenant"
+    },
+    "sms": {
+      "hint": "Counted with sample values in place of placeholders",
+      "meter_one": "{{encoding}} · {{length}} characters · {{count}} SMS",
+      "meter_other": "{{encoding}} · {{length}} characters · {{count}} SMS",
+      "encoding": {
+        "gsm": "GSM-7",
+        "ucs2": "Unicode"
+      }
+    },
+    "issues": {
+      "missingPlaceholder": "Missing placeholder {{placeholder}}",
+      "unknownPlaceholder": "{{placeholder}} is not in the English",
+      "placeholderCase": "Write {{expected}} exactly as in the English, not {{placeholder}}",
+      "missingLink": "Keep the link to {{url}} from the English",
+      "missingTag": "Missing tag {{tag}}",
+      "unknownTag": "{{tag}} is not a tag of this segment",
+      "brokenTag": "Tags are not closed in the right order",
+      "tooLong": "Over the {{limit}}-character limit",
+      "subjectLong": "Inboxes usually show only the first {{limit}} characters",
+      "muchLonger": "Much longer than the English, check that it still fits",
+      "smsParts": "Needs {{count}} SMS, the English needs {{source}}"
+    },
+    "preview": {
+      "notTranslated": "{{field}} not translated yet",
+      "inbox": "In the inbox",
+      "to": "to {{email}}",
+      "document": "Document",
+      "message": "Message",
+      "textMessage": "Text Message"
+    },
+    "dialog": {
+      "tenants": "Tenants",
+      "viewOnly": "View only",
+      "publishedHere": "This translation is published in {{release}} and can't be changed. Pick a newer release to start a new revision.",
+      "archivedHere": "This translation in {{release}} was replaced by a newer release and can't be changed.",
+      "saveCreates": "Saving creates a draft in {{release}}.",
+      "saveUpdates": "Saving updates the draft in {{release}}.",
+      "saveFromLive": "The live translation comes from {{live}}; saving starts a new draft in {{release}}.",
+      "publishNote": "Publishing and copying to tenants happen in the Notification admin.",
+      "sourceFromLive": "The English has no change in {{release}}, so you translate the live English from {{source}}.",
+      "sourceDraft": "The English for {{release}} is still a draft and may change.",
+      "outdated": "The English was updated on {{date}}, after this translation ({{translated}}).",
+      "outdatedMarked": "The English was updated on {{date}}, after this translation ({{translated}}). Changed texts are marked.",
+      "phoneCodes": "Sent to phone codes",
+      "preview": "Preview",
+      "previewFallback_one": "{{count}} segment is not translated yet and shows the English",
+      "previewFallback_other": "{{count}} segments are not translated yet and show the English",
+      "progress": "<b>{{translated}} of {{total}}</b> texts translated",
+      "issues_one": "{{count}} issue to fix",
+      "issues_other": "{{count}} issues to fix",
+      "unsaved": "Unsaved changes",
+      "discard": "Discard",
+      "close": "Close",
+      "fixToSave": "Fix the issues before saving",
+      "emptyBody": "Translate the body before saving",
+      "saveDraft": "Save draft",
+      "saved": "Saved the {{language}} draft of {{name}} in {{release}}"
+    }
+  },
+  "topbar": {
+    "openMenu": "Open menu",
+    "search": "Search",
+    "searchPlaceholder": "Search keys or text across all projects…",
+    "profile": "Profile",
+    "apiTokens": "API tokens",
+    "signOut": "Sign out",
+    "displayLanguage": "Display language",
+    "notInDemo": "Not available in this demo"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Translation status for {{projects}} in {{languages}}",
+    "totalKeys": "Total keys",
+    "newKeys": "New keys · last 7 days",
+    "newKeysFooter": "vs previous 7 days ({{previous}})",
+    "untranslated": "Untranslated strings",
+    "coverage": "Overall coverage",
+    "lockedProjects": "Locked projects",
+    "noLockedProjects": "No project is locked",
+    "lockStarts": "Starts {{date}}",
+    "lockSince": "Since {{date}}",
+    "scheduled": "Scheduled",
+    "locked": "Locked",
+    "lockUntil": "until <b>{{date}}</b>",
+    "lockUntilUnlocked": "until unlocked",
+    "keysToTranslate": "Keys to translate",
+    "allLanguages": "All languages",
+    "done": "Done",
+    "keysUnit_one": "key",
+    "keysUnit_other": "keys",
+    "needsAttention": "Needs attention",
+    "needsAttentionDescription": "Projects with the most untranslated strings",
+    "viewActivity": "View activity",
+    "missing": "{{count}} missing",
+    "translatedAgo": "translated {{time}}",
+    "review": "Review",
+    "noLanguages": "No target languages yet",
+    "nothingNeedsAttention": "Every project is fully translated"
+  },
+  "languages": {
+    "title": "Languages",
+    "summary": "{{languages}} · {{targets}} to translate · {{percent}} translated overall",
+    "unstaffed_one": "{{count}} without a translator",
+    "unstaffed_other": "{{count}} without a translator",
+    "add": "Add language",
+    "filterPlaceholder": "Filter languages or translators…",
+    "noMatch": "No languages match",
+    "empty": "No languages yet",
+    "columns": {
+      "language": "Language",
+      "translators": "Translators",
+      "projects": "Projects",
+      "completion": "Completion",
+      "lastUpdated": "Last updated"
+    },
+    "source": "Source",
+    "writtenByDevelopers": "Written by developers",
+    "noTranslator": "No translator",
+    "invited": "Invited",
+    "missing": "{{count}} missing",
+    "notUsed": "Not used by any project",
+    "edit": "Edit",
+    "activity": "Activity",
+    "delete": "Delete",
+    "moreActions": "More actions",
+    "drawer": {
+      "completion": "Completion",
+      "missingStrings": "Missing strings",
+      "projects": "Projects",
+      "translators": "Translators",
+      "translatedAcross": "{{translated}} of {{total}} strings translated across all projects",
+      "noProjects": "No project uses {{name}} yet.",
+      "locked": "Locked",
+      "projectProgress": "{{translated}} / {{total}} translated",
+      "edit": "Edit language"
+    },
+    "dialog": {
+      "addTitle": "Add language",
+      "editTitle": "Edit {{name}}",
+      "code": "Code",
+      "codeFormat": "Use an ISO code like vi or pt-BR",
+      "name": "Name",
+      "namePlaceholder": "Vietnamese",
+      "nativeName": "Native name",
+      "save": "Save changes",
+      "add": "Add language",
+      "saved": "{{name}} saved",
+      "added": "Language added"
+    },
+    "deleteDialog": {
+      "title": "Delete {{name}}?",
+      "warning": "The language will be removed from <b>{{projects}}</b> and its <b>{{translations}}</b> translations will be deleted. Translators lose access to it. This can't be undone.",
+      "confirm": "Delete language",
+      "deleted": "{{name}} deleted"
+    }
+  },
+  "users": {
+    "title": "Users & roles",
+    "description_one": "{{count}} member · developers and comtors",
+    "description_other": "{{count}} members · developers and comtors",
+    "invite": "Invite user",
+    "filter": {
+      "all": "All"
+    },
+    "roles": {
+      "Admin": "Admin",
+      "Developer": "Developer",
+      "Comtor": "Comtor"
+    },
+    "status": {
+      "Active": "Active",
+      "Invited": "Invited",
+      "Disabled": "Disabled"
+    },
+    "searchPlaceholder": "Search name or email…",
+    "noMatch": "No users found",
+    "columns": {
+      "user": "User",
+      "role": "Role",
+      "languages": "Languages",
+      "status": "Status",
+      "lastActive": "Last active"
+    },
+    "allLanguagesRead": "All",
+    "edit": "Edit",
+    "more": "More",
+    "resendInvite": "Resend invite",
+    "inviteResent": "Invitation re-sent to {{email}} (demo only)",
+    "enable": "Enable",
+    "disable": "Disable",
+    "enabled": "{{name}} enabled (demo only)",
+    "disabled": "{{name}} disabled (demo only)",
+    "remove": "Remove",
+    "removed": "{{name}} removed (demo only)",
+    "removeDialog": {
+      "title": "Remove {{name}}?",
+      "warning": "They will lose access to all projects and languages. This can't be undone."
+    },
+    "dialog": {
+      "inviteTitle": "Invite user",
+      "editTitle": "Edit {{name}}",
+      "fullName": "Full name",
+      "email": "Email",
+      "role": "Role",
+      "roleDescriptions": {
+        "Admin": "Manages users, projects and settings",
+        "Developer": "Adds keys, uploads files, publishes to TEST and LIVE",
+        "Comtor": "Translates assigned languages"
+      },
+      "languages": "Languages to translate",
+      "projects": "Projects",
+      "allProjects": "All projects",
+      "saveChanges": "Save changes",
+      "sendInvite": "Send invite",
+      "saved": "User saved (demo only)"
+    }
+  },
+  "upload": {
+    "title": "Upload JSON",
+    "steps": {
+      "project": "Project",
+      "language": "Language of the file",
+      "file": "JSON file",
+      "mode": "When a key already exists"
+    },
+    "projectPlaceholder": "Select a project…",
+    "languagePlaceholder": "Select a language…",
+    "dropzone": {
+      "title": "Drop your JSON file here, or <browse>browse</browse>",
+      "hint": "One language per file · flat or nested keys · max 5 MB",
+      "choose": "Choose JSON file"
+    },
+    "fileSize": "{{size}} KB",
+    "removeFile": "Remove file",
+    "errors": {
+      "invalidRoot": "The root of the file must be an object of key text.",
+      "readFailed": "Could not read this file: {{message}}"
+    },
+    "queued": "Import queued",
+    "submit": "Import translations",
+    "expectedFormat": {
+      "title": "Expected format",
+      "flatKeys": "Flat keys:"
+    },
+    "preview": {
+      "title": "Preview",
+      "keysFound_one": "{{count}} key found",
+      "keysFound_other": "{{count}} keys found",
+      "skipped_one": "{{count}} non-text value will be skipped",
+      "skipped_other": "{{count}} non-text values will be skipped",
+      "showingFirst": "showing first {{count}}",
+      "key": "Key",
+      "value": "Value",
+      "notText": "skipped – not text"
+    },
+    "mode": {
+      "fill": {
+        "title": "Add new keys & fill empty translations",
+        "description": "Existing translations are kept as they are"
+      },
+      "overwrite": {
+        "title": "Add new keys & overwrite existing translations",
+        "description": "Values from the file win"
+      },
+      "update": {
+        "title": "Only update existing keys",
+        "description": "Keys not yet in the system are ignored"
+      }
+    }
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "e.g. checkout.button or “Mật khẩu”",
+    "scope": {
+      "all": "Key & text",
+      "key": "Key only",
+      "text": "Text only"
+    },
+    "projectLabel": "Project",
+    "allProjects": "All projects",
+    "languageLabel": "Language",
+    "allLanguages": "All languages",
+    "submit": "Search",
+    "emptyTitle": "Search keys and translations",
+    "noResults": "No results for “{{query}}”",
+    "noResultsHint": "Check the spelling, or search in all projects and languages.",
+    "resultCount_one": "{{count}} result",
+    "resultCount_other": "{{count}} results",
+    "resultsNoun": "results",
+    "in": "in",
+    "newBadge": "NEW",
+    "moreLanguages_one": "+{{count}} more language",
+    "moreLanguages_other": "+{{count}} more languages",
+    "edit": "Edit"
+  },
+  "activity": {
+    "title": "Activity",
+    "projectLabel": "Project",
+    "allProjects": "All projects",
+    "languageLabel": "Language",
+    "allLanguages": "All languages",
+    "periodLabel": "Period",
+    "periods": {
+      "last24Hours": "Last 24 hours",
+      "last7Days": "Last 7 days",
+      "last30Days": "Last 30 days",
+      "allTime": "All time"
+    },
+    "clearFilters": "Clear filters",
+    "noActivity": "No activity found",
+    "noActivityHint": "Try a longer period or remove a filter.",
+    "eventCount_one": "{{count}} event",
+    "eventCount_other": "{{count}} events",
+    "eventsNoun": "events",
+    "filterByProject": "Show activity for {{project}} only",
+    "filterByLanguage": "Show {{language}} activity only",
+    "viewTranslations": "View translations"
+  },
+  "auth": {
+    "loading": "Signing you in…"
+  },
+  "errors": {
+    "network": "Can't reach the server. Check your connection and try again.",
+    "validation": "Some of the information isn't valid. Check it and try again.",
+    "forbidden": "You don't have permission to do this.",
+    "notFound": "We couldn't find what you're looking for.",
+    "conflict": "This was changed by someone else. Refresh and try again.",
+    "server": "Something went wrong on our side. Please try again later.",
+    "unknown": "Something went wrong. Please try again.",
+    "traceId": "Trace ID: {{traceId}}",
+    "copyTraceId": "Copy ID"
+  }
+}

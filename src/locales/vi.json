@@ -1,0 +1,40 @@
+{
+  "common": {
+    "projectCount_one": "{{count}} dự án",
+    "projectCount_other": "{{count}} dự án",
+    "languageCount_one": "{{count}} ngôn ngữ",
+    "languageCount_other": "{{count}} ngôn ngữ"
+  },
+  "time": {
+    "justNow": "just now",
+    "today": "Today",
+    "yesterday": "Yesterday"
+  },
+  "nav": {
+    "workspace": "Workspace",
+    "administration": "Administration",
+    "projects": "Projects",
+    "dashboard": "Dashboard",
+    "languages": "Languages",
+    "search": "Search",
+    "users": "Users & roles"
+  },
+  "topbar": {
+    "openMenu": "Open menu",
+    "search": "Search",
+    "searchPlaceholder": "Search keys or text across all projects…",
+    "profile": "Profile",
+    "apiTokens": "API tokens",
+    "signOut": "Sign out",
+    "displayLanguage": "Display language"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Translation status for {{projects}} in {{languages}}",
+    "totalKeys": "Total keys",
+    "newKeys": "New keys · last 7 days",
+    "missing": "{{count}} missing",
+    "translatedAgo": "translated {{time}}",
+    "review": "Review"
+  }
+}
