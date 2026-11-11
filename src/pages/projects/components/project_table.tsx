@@ -15,7 +15,7 @@ import { useLanguageCatalog } from "@/hooks/use_languages";
 import { LockStatus } from "@/constants/lock";
 import { useLocks } from "@/hooks/use_locks";
 import { projectCoverage, projectStringCount } from "@/lib/coverage";
-import { formatExact, formatNumber } from "@/lib/format";
+import { formatExact, formatNumber, formatRelative } from "@/lib/format";
 import { lockLabel, lockSummary } from "@/lib/lock";
 import { cn } from "@/lib/utils";
 import type { LockInfo } from "@/types/lock";
@@ -33,6 +33,8 @@ import {
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router";
+
+const VISIBLE_LANGUAGE_CODES = 5;
 
 export type ProjectTableRow = {
   project: ProjectListItem;
@@ -86,16 +88,30 @@ export function ProjectTable({ rows, selectedProjectId, onOpenProject }: Project
                 selectedProjectId === project.id && "bg-brand-soft hover:bg-brand-soft",
               )}
             >
-              <Td className="cursor-pointer" onClick={() => onOpenProject(project)}>
+              <Td className="group/name cursor-pointer" onClick={() => onOpenProject(project)}>
                 <div className="flex items-center gap-2">
                   <ProjectIcon project={project} size="sm" />
-                  <div className="min-w-0 font-semibold">{project.name}</div>
+                  <div className="min-w-0 font-semibold underline-offset-2 group-hover/name:text-brand group-hover/name:underline">
+                    {project.name}
+                  </div>
                 </div>
               </Td>
               <Td>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <span className="cursor-default">{targets.length}</span>
+                    <div className="w-fit cursor-default">
+                      <div className="text-xs font-semibold tracking-wide whitespace-nowrap uppercase">
+                        {targets.slice(0, VISIBLE_LANGUAGE_CODES).join(" ")}
+                        {targets.length > VISIBLE_LANGUAGE_CODES && (
+                          <span className="ml-1 font-normal text-muted-foreground">
+                            +{targets.length - VISIBLE_LANGUAGE_CODES}
+                          </span>
+                        )}
+                      </div>
+                      <div className="mt-0.5 text-xs text-muted-foreground">
+                        {t("common.languageCount", { count: targets.length })}
+                      </div>
+                    </div>
                   </TooltipTrigger>
                   <TooltipContent side="bottom" align="start">
                     <ul className="flex flex-col gap-1">
@@ -125,19 +141,17 @@ export function ProjectTable({ rows, selectedProjectId, onOpenProject }: Project
               <Td className="whitespace-nowrap">
                 {!lastTranslatedAt ? (
                   <span className="text-muted-foreground">-</span>
-                ) : project.lastTranslatedBy ? (
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <span className="cursor-default">{formatExact(lastTranslatedAt)}</span>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom" align="start">
-                      {t("projects.byUser", {
-                        name: project.lastTranslatedBy,
-                      })}
-                    </TooltipContent>
-                  </Tooltip>
                 ) : (
-                  formatExact(lastTranslatedAt)
+                  <>
+                    <div className="cursor-default" title={formatExact(lastTranslatedAt)}>
+                      {formatRelative(lastTranslatedAt)}
+                    </div>
+                    {project.lastTranslatedBy && (
+                      <div className="mt-0.5 text-xs text-muted-foreground">
+                        {t("projects.byUser", { name: project.lastTranslatedBy })}
+                      </div>
+                    )}
+                  </>
                 )}
               </Td>
               <Td>
@@ -184,7 +198,7 @@ function ProjectRowActions({ project, status, onOpenLanguages }: ProjectRowActio
   const { lockNow, unlock } = useLocks();
 
   return (
-    <div className="flex justify-end gap-1 opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100 has-data-[state=open]:opacity-100">
+    <div className="flex justify-end gap-1 opacity-60 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100 has-data-[state=open]:opacity-100">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button

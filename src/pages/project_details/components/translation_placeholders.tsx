@@ -30,7 +30,7 @@ export function TranslationPlaceholders({
               size="xs"
               tone={value.trim() && !value.includes(token) ? "warn" : "gray"}
             >
-              <code>{token}</code>
+              <code className="font-sans">{token}</code>
             </Pill>
           ))}
         </div>

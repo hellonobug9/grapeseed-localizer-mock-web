@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { FieldError } from "@/components/field_error";
 import { Label } from "@/components/ui/label";
 import { Panel } from "@/components/panel";
 import {
@@ -10,15 +9,17 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
 import { Segmented } from "@/components/segmented";
 import { TextView } from "@/constants/key_format";
 import { SOURCE_LANGUAGE } from "@/constants/language";
+import { compactHtml, formatHtml } from "@/lib/html_format";
 import { cn } from "@/lib/utils";
+import { HtmlCodeEditor } from "@/pages/project_details/components/html_code_editor";
 import { TranslationContentPreview } from "@/pages/project_details/components/translation_content_preview";
 import { TranslationPlaceholders } from "@/pages/project_details/components/translation_placeholders";
+import { SmsMeter } from "@/pages/templates/components/text_field";
 import type { TranslationKey } from "@/types/translation_key";
-import { Code, Eye } from "lucide-react";
+import { Eye, TriangleAlert } from "lucide-react";
 import { useDeferredValue, useEffect, useId, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -44,6 +45,13 @@ const matchesSourceStructure = (source: string, target: string) => {
   );
 };
 
+const PreviewPane = {
+  Translation: "translation",
+  Source: "source",
+} as const;
+
+type PreviewPane = (typeof PreviewPane)[keyof typeof PreviewPane];
+
 type HtmlTranslationDialogProps = {
   translationKey: TranslationKey;
   language: { code: string; name: string };
@@ -52,6 +60,8 @@ type HtmlTranslationDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSave: (value: string) => void | Promise<void>;
+  /** False for plain-text SMS templates: no HTML formatting or tag checks, and an SMS length meter. */
+  html?: boolean;
 };
 
 export function HtmlTranslationDialog({
@@ -62,11 +72,16 @@ export function HtmlTranslationDialog({
   open,
   onOpenChange,
   onSave,
+  html: isHtml = true,
 }: HtmlTranslationDialogProps) {
   const { t } = useTranslation();
-  const initialDraft = value?.trim() ? value : source;
+  const [initialDraft] = useState(() => {
+    const text = value?.trim() ? value : source;
+    return isHtml ? formatHtml(text) : text;
+  });
   const [draft, setDraft] = useState(initialDraft);
   const [view, setView] = useState<TextView>(TextView.Write);
+  const [previewPane, setPreviewPane] = useState<PreviewPane>(PreviewPane.Translation);
   const [confirmDiscard, setConfirmDiscard] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string>();
@@ -75,8 +90,20 @@ export function HtmlTranslationDialog({
   const errorId = useId();
   const previewDraft = useDeferredValue(draft);
   const dirty = draft !== initialDraft;
-  const hasTagMismatch = !!draft.trim() && !matchesSourceStructure(source, draft);
+  const paneHeight = isHtml ? "h-[min(55dvh,460px)] min-h-64" : "h-48";
+  const hasTagMismatch = isHtml && !!draft.trim() && !matchesSourceStructure(source, draft);
   const title = t("keyForm.previewTitle", { language: language.name });
+  const previewOptions = [
+    {
+      value: PreviewPane.Translation,
+      label: (
+        <>
+          <Eye aria-hidden="true" /> {t("keyForm.view.preview")}
+        </>
+      ),
+    },
+    { value: PreviewPane.Source, label: t("keyForm.htmlEditor.englishSource") },
+  ];
 
   useEffect(() => {
     if (!open || !dirty) return;
@@ -99,7 +126,7 @@ export function HtmlTranslationDialog({
     setSaving(true);
     setSaveError(undefined);
     try {
-      await onSave(draft);
+      await onSave(isHtml ? compactHtml(draft) : draft);
       onOpenChange(false);
     } catch {
       setSaveError(t("keyForm.htmlEditor.saveFailed"));
@@ -113,61 +140,36 @@ export function HtmlTranslationDialog({
     <Dialog open={open} onOpenChange={requestClose}>
       <DialogContent className="flex max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-none flex-col gap-0 overflow-hidden p-0 sm:w-[calc(100vw-4rem)] sm:max-w-none xl:w-[1180px] 2xl:w-[1280px]">
         <DialogHeader className="shrink-0 border-b px-5 py-4 pr-12">
-          <DialogTitle className="font-mono text-sm leading-relaxed wrap-anywhere">
+          <DialogTitle className="text-base leading-relaxed wrap-anywhere">
             {translationKey.key}
           </DialogTitle>
           <DialogDescription>{translationKey.description}</DialogDescription>
         </DialogHeader>
 
         <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain p-5">
-          <details className="mb-4 rounded-lg border bg-surface-2">
-            <summary className="cursor-pointer px-3 py-2 text-xs font-semibold text-text-2">
-              {t("keyForm.englishSource")}
-            </summary>
-            <TranslationContentPreview
-              value={source}
-              lang={SOURCE_LANGUAGE}
-              title={t("keyForm.englishSource")}
-              html
-              className="max-h-36 border-t px-3 py-2"
-            />
-          </details>
+          <Segmented
+            size="sm"
+            stretch
+            value={view === TextView.Write ? TextView.Write : previewPane}
+            onChange={(next) => {
+              if (next === TextView.Write) return setView(TextView.Write);
+              setView(TextView.Preview);
+              setPreviewPane(next);
+            }}
+            className="mb-3 lg:hidden"
+            options={[
+              { value: TextView.Write, label: t("keyForm.htmlEditor.editor") },
+              ...previewOptions,
+            ]}
+          />
 
-          <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <Label htmlFor={editorId}>{language.name}</Label>
-              <div className="font-mono text-xs text-muted-foreground">{language.code}</div>
-            </div>
-            <Segmented
-              size="sm"
-              value={view}
-              onChange={setView}
-              className="lg:hidden"
-              options={[
-                {
-                  value: TextView.Write,
-                  label: (
-                    <>
-                      <Code aria-hidden="true" /> {t("keyForm.htmlEditor.editor")}
-                    </>
-                  ),
-                },
-                {
-                  value: TextView.Preview,
-                  label: (
-                    <>
-                      <Eye aria-hidden="true" /> {t("keyForm.view.preview")}
-                    </>
-                  ),
-                },
-              ]}
-            />
-          </div>
-
-          <div className="grid min-w-0 grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1fr)]">
-            <div className={cn("min-w-0 space-y-2", view !== TextView.Write && "hidden lg:block")}>
-              <p className="text-xs text-muted-foreground">{t("keyForm.htmlEditor.editor")}</p>
-              <Textarea
+          <div className="grid min-w-0 grid-cols-1 gap-5 lg:grid-cols-2">
+            <div className={cn("min-w-0", view !== TextView.Write && "hidden lg:block")}>
+              <div className="mb-2 flex h-7 items-center gap-2">
+                <Label htmlFor={editorId}>{language.name}</Label>
+                <span className="text-xs text-muted-foreground uppercase">{language.code}</span>
+              </div>
+              <HtmlCodeEditor
                 ref={inputRef}
                 id={editorId}
                 lang={language.code}
@@ -176,7 +178,6 @@ export function HtmlTranslationDialog({
                 autoComplete="off"
                 value={draft}
                 disabled={saving}
-                spellCheck={false}
                 wrap="soft"
                 onChange={(event) => {
                   setDraft(event.target.value);
@@ -185,35 +186,55 @@ export function HtmlTranslationDialog({
                 aria-label={language.name}
                 aria-invalid={hasTagMismatch || !!saveError}
                 aria-describedby={errorId}
-                className="field-sizing-fixed h-[min(50dvh,420px)] min-h-64 resize-y font-mono text-sm leading-relaxed"
+                className={cn("field-sizing-fixed resize-y", paneHeight)}
               />
+              {!isHtml && <SmsMeter text={draft} />}
               <TranslationPlaceholders source={source} value={draft} />
+              <div id={errorId} role="alert" className="mt-1 flex flex-col gap-1">
+                {[hasTagMismatch && t("keyForm.htmlTagError"), saveError]
+                  .filter(Boolean)
+                  .map((message) => (
+                    <p key={message as string} className="flex items-center gap-1.5 text-xs text-bad">
+                      <TriangleAlert className="size-3.5 shrink-0" aria-hidden="true" /> {message}
+                    </p>
+                  ))}
+              </div>
             </div>
-            <div
-              className={cn("min-w-0 space-y-2", view !== TextView.Preview && "hidden lg:block")}
-            >
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span className="flex items-center gap-1">
-                  <Eye className="size-3.5" aria-hidden="true" />{" "}
-                  {t("keyForm.htmlEditor.contentPreview")}
-                </span>
-                <span>{t("keyForm.htmlEditor.live")}</span>
+            <div className={cn("min-w-0", view !== TextView.Preview && "hidden lg:block")}>
+              <div className="mb-2 flex h-7 items-center justify-between gap-2">
+                <Segmented
+                  size="sm"
+                  value={previewPane}
+                  onChange={setPreviewPane}
+                  className="hidden lg:inline-flex"
+                  options={previewOptions}
+                />
+                {isHtml && (
+                  <span className="ml-auto text-xs text-muted-foreground">
+                    {t("keyForm.htmlEditor.previewHint")}
+                  </span>
+                )}
               </div>
               <Panel className="overflow-hidden">
-                <TranslationContentPreview
-                  value={previewDraft}
-                  lang={language.code}
-                  title={title}
-                  html
-                  className="h-[min(50dvh,420px)] max-h-none min-h-64 p-4"
-                />
+                {previewPane === PreviewPane.Source ? (
+                  <TranslationContentPreview
+                    value={source}
+                    lang={SOURCE_LANGUAGE}
+                    title={t("keyForm.htmlEditor.englishSource")}
+                    html={isHtml}
+                    className={cn("max-h-none bg-surface-2 p-4", paneHeight)}
+                  />
+                ) : (
+                  <TranslationContentPreview
+                    value={previewDraft}
+                    lang={language.code}
+                    title={title}
+                    html={isHtml}
+                    className={cn("max-h-none p-4", paneHeight)}
+                  />
+                )}
               </Panel>
-              <p className="text-xs text-muted-foreground">{t("keyForm.htmlEditor.previewHint")}</p>
             </div>
-          </div>
-          <div id={errorId} role="alert" className="mt-2">
-            <FieldError>{hasTagMismatch && t("keyForm.htmlTagError")}</FieldError>
-            <FieldError>{saveError}</FieldError>
           </div>
         </div>
 

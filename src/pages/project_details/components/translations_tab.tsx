@@ -40,6 +40,7 @@ import {
   Ellipsis,
   FolderOpen,
   Inbox,
+  Languages,
   Layers,
   Pencil,
   Save,
@@ -266,7 +267,9 @@ export function TranslationsTab({ project, filters, onFiltersChange }: Translati
   };
 
   const startEdit = (key: TranslationKey) => {
-    if (key.format === KeyFormat.LongText && lang && selectedLang) setEditingLong(key);
+    // Template keys (HTML or plain-text SMS) are edited in the dialog with a preview.
+    if ((key.format === KeyFormat.LongText || key.name) && lang && selectedLang)
+      setEditingLong(key);
     else if (key.format === KeyFormat.LongText || !lang) openKeyEditor(key);
     else setEditingIds((current) => new Set(current).add(key.id));
   };
@@ -522,14 +525,15 @@ export function TranslationsTab({ project, filters, onFiltersChange }: Translati
                             >
                               <Clipboard /> {t('projectDetails.translations.copyKey')}
                             </DropdownMenuItem> */}
+                            <DropdownMenuItem onSelect={() => openKeyEditor(k)}>
+                              <Languages /> {t("projectDetails.translations.translate")}
+                            </DropdownMenuItem>
                             {selectedLang && lang && !missingIn(k, lang) && (
                               <DropdownMenuItem onSelect={() => copyTranslation(k, lang)}>
                                 <Clipboard /> {t("projectDetails.translations.copyTranslation")}
                               </DropdownMenuItem>
                             )}
-                            {selectedLang && lang && !missingIn(k, lang) && (
-                              <DropdownMenuSeparator />
-                            )}
+                            <DropdownMenuSeparator />
                             <DropdownMenuItem variant="destructive" onSelect={() => setDeleting(k)}>
                               <Trash /> {t("projectDetails.translations.deleteKey")}
                             </DropdownMenuItem>
@@ -586,6 +590,7 @@ export function TranslationsTab({ project, filters, onFiltersChange }: Translati
         <HtmlTranslationDialog
           key={`${editingLong.id}:${lang}`}
           translationKey={editingLong}
+          html={editingLong.format === KeyFormat.LongText}
           language={selectedLang}
           source={savedValueOf(editingLong, SOURCE_LANGUAGE) ?? ""}
           value={savedValueOf(editingLong, lang)}

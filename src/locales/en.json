@@ -308,8 +308,7 @@
     "htmlTagError": "Keep the HTML tags and link destinations the same as the English source.",
     "htmlEditor": {
       "editor": "Editor",
-      "contentPreview": "Content preview",
-      "live": "Live",
+      "englishSource": "English source",
       "previewHint": "Template styling may differ.",
       "emptyPreview": "Start typing to preview your translation.",
       "placeholders": "Keep placeholders unchanged:",

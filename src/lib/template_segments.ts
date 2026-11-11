@@ -5,7 +5,7 @@ import type { Segment, SegmentToken, TemplateIssue } from "@/types/template";
 // tags are written as numbered tokens, e.g. `Hi <1>{TeacherName}</1>`. The translation is put back into
 // a copy of the English markup, so tags, attributes and styles always come from the English.
 
-const BLOCK_TAGS = new Set([
+export const BLOCK_TAGS = new Set([
   "address",
   "article",
   "aside",

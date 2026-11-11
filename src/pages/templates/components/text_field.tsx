@@ -98,7 +98,7 @@ export function TextField({
   );
 }
 
-function SmsMeter({ text }: { text: string }) {
+export function SmsMeter({ text }: { text: string }) {
   const { t } = useTranslation();
   const info = smsInfo(text);
 
